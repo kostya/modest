@@ -37,7 +37,6 @@ module Modest
       MyCSS_STATUS_ERROR_PARSER_LIST_CREATE               = 0x010800
     end
 
-    # mycss
     type MycssT = Void*
     type MycssEntryT = Void*
     type MysccSelectorsListT = Void*
