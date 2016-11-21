@@ -14,7 +14,7 @@ dependencies:
 ```
 
 
-## Usage of CSS Selectors inside with kostya/myhtml
+## Usage of CSS Selectors with https://github.com/kostya/myhtml
 
 
 ```crystal
