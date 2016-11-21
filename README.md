@@ -20,7 +20,7 @@ dependencies:
 ```crystal
 require "modest"
 
-html = <<-HTML
+html = <<-PAGE
   <div>
     <p id=p1>
     <p id=p2 class=jo>
@@ -33,7 +33,7 @@ html = <<-HTML
       <p id=p6 class=jo>
     </div>
   </div>
-HTML
+PAGE
 
 parser = Myhtml::Parser.new.parse(html)
 
