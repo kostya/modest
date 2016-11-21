@@ -21,6 +21,7 @@ parser = Myhtml::Parser.new.parse(html)
 p parser.css("p[id*=p]").map(&.attribute_by("id")).to_a # => ["p1", "p2", "p3", "p4", "p5", "p6"]
 
 # select all nodes with class "jo"
+p parser.css("p.jo").map(&.attribute_by("id")).to_a # => ["p2", "p4", "p6"]
 p parser.css(".jo").map(&.attribute_by("id")).to_a # => ["p2", "p4", "p6"]
 
 # select odd child tag inside div, which not contain a

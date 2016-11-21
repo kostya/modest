@@ -41,6 +41,7 @@ parser = Myhtml::Parser.new.parse(html)
 p parser.css("p[id*=p]").map(&.attribute_by("id")).to_a # => ["p1", "p2", "p3", "p4", "p5", "p6"]
 
 # select all nodes with class "jo"
+p parser.css("p.jo").map(&.attribute_by("id")).to_a # => ["p2", "p4", "p6"]
 p parser.css(".jo").map(&.attribute_by("id")).to_a # => ["p2", "p4", "p6"]
 
 # select odd child tag inside div, which not contain a
@@ -54,7 +55,6 @@ p parser.css(%q{a[href$=".png"]}).map(&.attribute_by("id")).to_a # => ["a2"]
 
 # find all a tags inside <p id=p3>, which href contain `html`
 p parser.css(%q{p[id=p3] > a[href*="html"]}).map(&.attribute_by("id")).to_a # => ["a1"]
-
 ```
 
 ## CSS Selectors rules
