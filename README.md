@@ -31,3 +31,6 @@ nodes = parser.root!.css(".jo").map(&.attribute_by("id")).to_a # => ["p4", "p6"]
 p nodes
 
 ```
+
+## CSS Selectors rules
+http://www.w3schools.com/cssref/css_selectors.asp
