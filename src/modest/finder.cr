@@ -1,4 +1,4 @@
-struct Modest::Finder
+class Modest::Finder
   @finder : LibModest::ModestFinderT*
 
   def initialize(@tree : Myhtml::Tree, rule : String)
