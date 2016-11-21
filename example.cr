@@ -1,24 +1,4 @@
-# modest
-
-Crystal wrapper for lexborisov/Modest
-
-## Installation
-
-
-Add this to your application's `shard.yml`:
-
-```yaml
-dependencies:
-  modest:
-    github: kostya/modest
-```
-
-
-## Usage of CSS Selectors inside with kostya/myhtml
-
-
-```crystal
-require "modest"
+require "./src/modest"
 
 # description of selectors: http://www.w3schools.com/cssref/css_selectors.asp
 
@@ -27,6 +7,4 @@ parser = Myhtml::Parser.new.parse(html)
 
 # select all nodes with class "jo"
 nodes = parser.root!.css(".jo").to_a.map &.attribute_by("id") # => ["p4", "p6"]
-
-
-```
+p nodes

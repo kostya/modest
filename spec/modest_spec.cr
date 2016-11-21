@@ -1,7 +1,7 @@
 require "./spec_helper"
 
 describe Modest do
-  it "selectors work" do
+  it "direct use Finder" do
     html = "<div><p id=p1><p id=p2><p id=p3><a>link</a><p id=p4><p id=p5><p id=p6></div>"
     selector = "div > :nth-child(2n+1):not(:has(a))"
 
@@ -20,7 +20,7 @@ describe Modest do
     n2.attribute_by("id").should eq "p5"
   end
 
-  it "for node" do
+  it "css for root! node" do
     html = "<div><p id=p1><p id=p2><p id=p3><a>link</a><span id=bla><p id=p4><p id=p5><p id=p6></span></div>"
 
     parser = Myhtml::Parser.new.parse(html)
@@ -37,20 +37,17 @@ describe Modest do
     n2.attribute_by("id").should eq "p5"
   end
 
-  it "for node scope" do
-    html = "<div><p id=p1><p id=p2><p id=p3><a>link</a><span id=bla><p id=p4><p id=p5><p id=p6></span></div>"
+  it "another rule" do
+    html = "<div><p id=p1><p id=p2><p id=p3><a>link</a><span id=bla><p id=p4 class=jo><p id=p5 class=bu><p id=p6 class=jo></span></div>"
 
     parser = Myhtml::Parser.new.parse(html)
-    nodes = parser.nodes(:span).first.css("p:nth-child(2n+1)").to_a
+    parser.root!.css(".jo").to_a.map(&.attribute_by("id")).should eq %w{p4 p6}
+  end
 
-    nodes.size.should eq 2
+  it "another rule" do
+    html = "<div><p id=p1><p id=p2><p id=p3><a>link</a><span id=bla><p id=p4 class=jo><p id=p5 class=bu><p id=p6 class=jo></span></div>"
 
-    n1, n2 = nodes
-
-    n1.tag_name.should eq "p"
-    n1.attribute_by("id").should eq "p1"
-
-    n2.tag_name.should eq "p"
-    n2.attribute_by("id").should eq "p5"
+    parser = Myhtml::Parser.new.parse(html)
+    parser.root!.css(".jo").to_a.map(&.attribute_by("id")).should eq %w{p4 p6}
   end
 end

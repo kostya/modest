@@ -6,7 +6,6 @@ struct Modest::Finder
     @css = Mycss.new
     # TODO: fix this!!!
     @selectors = Modest::LibMyCss.get_jopa(@css.raw_entry)
-
     @list = LibMyCss.selectors_parse(@selectors, Myhtml::Lib::MyhtmlEncodingList::MyHTML_ENCODING_UTF_8, rule.to_unsafe, rule.bytesize, out status)
     if status != LibMyCss::MycssStatusT::MyCSS_STATUS_OK
       raise Myhtml::Error.new("finder selectors_parse #{status}")
@@ -15,6 +14,8 @@ struct Modest::Finder
 
   def find(scope_node : Myhtml::Node)
     col = LibModest.finder_by_selectors_list(@finder, @list, scope_node.raw_node, nil)
+    # TODO: save self to iterator?
+    #   or create new iterator
     Myhtml::CollectionIterator.new(@tree, col)
   end
 
