@@ -1,6 +1,6 @@
 require "./src/modest"
 
-html = <<-HTML
+html = <<-PAGE
   <div>
     <p id=p1>
     <p id=p2 class=jo>
@@ -13,9 +13,12 @@ html = <<-HTML
       <p id=p6 class=jo>
     </div>
   </div>
-HTML
+PAGE
 
 parser = Myhtml::Parser.new.parse(html)
+
+# select all p nodes which id like `*p*`
+p parser.css("p[id*=p]").map(&.attribute_by("id")).to_a # => ["p1", "p2", "p3", "p4", "p5", "p6"]
 
 # select all nodes with class "jo"
 p parser.css(".jo").map(&.attribute_by("id")).to_a # => ["p2", "p4", "p6"]
@@ -27,4 +30,7 @@ p parser.css("div > :nth-child(2n+1):not(:has(a))").map(&.attribute_by("id")).to
 p parser.css("div").to_a.last.css(".jo").map(&.attribute_by("id")).to_a # => ["p4", "p6"]
 
 # a element with href ends like .png
-p parser.css(%q<a[href$=".png"]>).map(&.attribute_by("id")).to_a # => ["a2"]
+p parser.css(%q{a[href$=".png"]}).map(&.attribute_by("id")).to_a # => ["a2"]
+
+# find all a tags inside <p id=p3>, which href contain `html`
+p parser.css(%q{p[id=p3] > a[href*="html"]}).map(&.attribute_by("id")).to_a # => ["a1"]
