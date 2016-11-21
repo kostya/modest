@@ -51,9 +51,11 @@ module Modest
                                                 data : UInt8*, data_size : LibC::SizeT, out_status : MycssStatusT*) : MysccSelectorsListT*
     fun selectors_list_destroy = mycss_selectors_list_destroy(selectors : MysccSelectorsT*, selector_list : MysccSelectorsListT*, self_destroy : Bool) : MysccSelectorsListT*
 
-    fun get_jopa = mycss_get_jopa(entry : MycssEntryT*) : MysccSelectorsT*
+    fun entry_selectors = mycss_entry_selectors(mycss_entry_t* entry)(entry : MycssEntryT*) : MysccSelectorsT*
     fun destroy = mycss_destroy(mycss : MycssT*, self_destroy : Bool) : MycssT*
     fun entry_destroy = mycss_entry_destroy(entry : MycssEntryT*, self_destroy : Bool) : MycssEntryT*
+
+    # mycss_selectors_list_destroy
   end
 
   # cd src/ext && make

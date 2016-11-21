@@ -4,8 +4,7 @@ struct Modest::Finder
   def initialize(@tree : Myhtml::Tree, rule : String)
     @finder = LibModest.finder_create_simple(@tree.raw_tree, nil)
     @css = Mycss.new
-    # TODO: fix this!!!
-    @selectors = Modest::LibMyCss.get_jopa(@css.raw_entry)
+    @selectors = Modest::LibMyCss.entry_selectors(@css.raw_entry)
     @list = LibMyCss.selectors_parse(@selectors, Myhtml::Lib::MyhtmlEncodingList::MyHTML_ENCODING_UTF_8, rule.to_unsafe, rule.bytesize, out status)
     if status != LibMyCss::MycssStatusT::MyCSS_STATUS_OK
       raise Myhtml::Error.new("finder selectors_parse #{status}")
