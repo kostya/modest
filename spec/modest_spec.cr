@@ -38,16 +38,40 @@ describe Modest do
   end
 
   it "another rule" do
-    html = "<div><p id=p1><p id=p2><p id=p3><a>link</a><span id=bla><p id=p4 class=jo><p id=p5 class=bu><p id=p6 class=jo></span></div>"
+    html = "<div><p id=p1><p id=p2 class=jo><p id=p3><a>link</a><span id=bla><p id=p4 class=jo><p id=p5 class=bu><p id=p6 class=jo></span></div>"
 
     parser = Myhtml::Parser.new.parse(html)
-    parser.root!.css(".jo").to_a.map(&.attribute_by("id")).should eq %w{p4 p6}
+    parser.root!.css(".jo").to_a.map(&.attribute_by("id")).should eq %w(p2 p4 p6)
   end
 
-  it "another rule" do
+  it "work for another scope node" do
     html = "<div><p id=p1><p id=p2><p id=p3><a>link</a><span id=bla><p id=p4 class=jo><p id=p5 class=bu><p id=p6 class=jo></span></div>"
 
     parser = Myhtml::Parser.new.parse(html)
-    parser.root!.css(".jo").to_a.map(&.attribute_by("id")).should eq %w{p4 p6}
+    parser.nodes(:span).first.css(".jo").to_a.map(&.attribute_by("id")).should eq %w(p4 p6)
+  end
+
+  context "build finder" do
+    it "for parser" do
+      html = "<div><p id=p1><p id=p2 class=jo><p id=p3><a>link</a><span id=bla><p id=p4 class=jo><p id=p5 class=bu><p id=p6 class=jo></span></div>"
+
+      parser = Myhtml::Parser.new.parse(html)
+      finder = parser.finder(".jo")
+
+      10.times do
+        parser.root!.css(finder).to_a.map(&.attribute_by("id")).should eq %w(p2 p4 p6)
+      end
+    end
+
+    it "for root node" do
+      html = "<div><p id=p1><p id=p2 class=jo><p id=p3><a>link</a><span id=bla><p id=p4 class=jo><p id=p5 class=bu><p id=p6 class=jo></span></div>"
+
+      parser = Myhtml::Parser.new.parse(html)
+      finder = parser.root!.finder(".jo")
+
+      10.times do
+        parser.root!.css(finder).to_a.map(&.attribute_by("id")).should eq %w(p2 p4 p6)
+      end
+    end
   end
 end
