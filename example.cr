@@ -7,5 +7,7 @@ html = "<div><p id=p1><p id=p2><p id=p3><a>link</a>
 parser = Myhtml::Parser.new.parse(html)
 
 # select all nodes with class "jo"
-nodes = parser.root!.css(".jo").map(&.attribute_by("id")).to_a # => ["p4", "p6"]
-p nodes
+p parser.root!.css(".jo").map(&.attribute_by("id")).to_a # => ["p4", "p6"]
+
+# select odd p tag inside div, which not contain a
+p parser.css("div > :nth-child(2n+1):not(:has(a))").map(&.attribute_by("id")).to_a # => ["p1", "p5"]
