@@ -50,7 +50,7 @@ module Modest
     fun entry_init = mycss_entry_init(mycss : MycssT*, entry : MycssEntryT*) : MycssStatusT
     fun selectors_parse = mycss_selectors_parse(selectors : MysccSelectorsT*, encoding : Myhtml::Lib::MyhtmlEncodingList,
                                                 data : UInt8*, data_size : LibC::SizeT, out_status : MycssStatusT*) : MysccSelectorsListT*
-
+    fun entry_current_selectors_list = mycss_entry_current_selectors_list(entry : MycssEntryT*) : MysccSelectorsListT*
     fun destroy = mycss_destroy(mycss : MycssT*, self_destroy : Bool) : MycssT*
     fun entry_destroy = mycss_entry_destroy(entry : MycssEntryT*, self_destroy : Bool) : MycssEntryT*
   end
