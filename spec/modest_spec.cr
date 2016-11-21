@@ -7,8 +7,16 @@ describe Modest do
 
     parser = Myhtml::Parser.new.parse(html)
     finder = Modest::Finder.new(parser.tree, selector)
-    nodes = finder.find(parser.html!)
+    nodes = finder.find(parser.html!).to_a
 
-    p nodes.size
+    nodes.size.should eq 2
+
+    n1, n2 = nodes
+
+    n1.tag_name.should eq "p"
+    n1.attribute_by("id").should eq "p1"
+
+    n2.tag_name.should eq "p"
+    n2.attribute_by("id").should eq "p5"
   end
 end

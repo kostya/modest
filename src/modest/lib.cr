@@ -1,4 +1,5 @@
 module Modest
+  @[Link(ldflags: "#{__DIR__}/../ext/modest-c/lib/libmodest_static.a")]
   lib LibMyCss
     enum MycssStatusT
       MyCSS_STATUS_OK                                     = 0x000000
@@ -38,19 +39,36 @@ module Modest
 
     # mycss
     type MycssT = Void*
-    # type mycss_status_t
-    type MycssEntryT = Void*
+    # type MycssEntryT = Void*
     type MysccSelectorsListT = Void*
-    # type MysccSelectorsT = Void*
+    type MysccSelectorsT = Void*
     type MycssStylesheeT = Void*
+
+    struct MycssEntryT
+      shift : UInt8[44]
+      selectors : MysccSelectorsT*
+    end
+
+    # /* refs */
+    # mycss_t* mycss;
+    # mycss_token_t* token;
+    # mycss_stylesheet_t* stylesheet;
+    # /* objects and memory for css modules */
+    # mchar_async_t* mchar;
+    # size_t mchar_node_id;
+    # size_t mchar_value_node_id;
+    # mcobject_t* mcobject_string_entries;
+    # /* css modules */
+    # mycss_namespace_t*   ns;
+    # mycss_selectors_t*   selectors;
 
     fun create = mycss_create : MycssT*
     fun init = mycss_init(mycss : MycssT*) : MycssStatusT
     fun entry_create = mycss_entry_create : MycssEntryT*
     fun entry_init = mycss_entry_init(mycss : MycssT*, entry : MycssEntryT*) : MycssStatusT
-    fun selectors_parse = mycss_selectors_parse(selectors : MysccSelectorsListT*, encoding : Myhtml::Lib::MyhtmlEncodingList,
+    fun selectors_parse = mycss_selectors_parse(selectors : MysccSelectorsT*, encoding : Myhtml::Lib::MyhtmlEncodingList,
                                                 data : UInt8*, data_size : LibC::SizeT, out_status : MycssStatusT*) : MysccSelectorsListT*
-    fun entry_current_selectors_list = mycss_entry_current_selectors_list(entry : MycssEntryT*) : MysccSelectorsListT*
+    fun get_jopa = mycss_get_jopa(entry : MycssEntryT*) : MysccSelectorsT*
     fun destroy = mycss_destroy(mycss : MycssT*, self_destroy : Bool) : MycssT*
     fun entry_destroy = mycss_entry_destroy(entry : MycssEntryT*, self_destroy : Bool) : MycssEntryT*
   end
@@ -65,8 +83,7 @@ module Modest
     fun finder_destroy = modest_finder_destroy(finder : ModestFinderT*, self_destroy : Bool) : ModestFinderT*
 
     fun finder_by_selectors_list = modest_finder_by_selectors_list(finder : ModestFinderT*, sel_list : LibMyCss::MysccSelectorsListT*,
-      base_node : Myhtml::Lib::MyhtmlTreeNodeT*, collection : Myhtml::Lib::MyhtmlCollectionT*) : Myhtml::Lib::MyhtmlCollectionT*
-
+                                                                   base_node : Myhtml::Lib::MyhtmlTreeNodeT*, collection : Myhtml::Lib::MyhtmlCollectionT*) : Myhtml::Lib::MyhtmlCollectionT*
 
     # modest_finder_t * modest_finder_create_simple(myhtml_tree_t* myhtml_tree, mycss_stylesheet_t *stylesheet);
 
