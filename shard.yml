@@ -4,4 +4,9 @@ version: 0.1.0
 authors:
   - Konstantin Makarchev <kostya27@gmail.com>
 
+dependencies:
+  myhtml:
+    github: kostya/myhtml
+    branch: master
+
 license: MIT
