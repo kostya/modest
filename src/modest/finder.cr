@@ -5,9 +5,9 @@ struct Modest::Finder
     @finder = LibModest.finder_create_simple(@tree.raw_tree, nil)
     @css = Mycss.new
     # TODO: fix this!!!
-    selectors = Modest::LibMyCss.get_jopa(@css.raw_entry)
+    @selectors = Modest::LibMyCss.get_jopa(@css.raw_entry)
 
-    @list = LibMyCss.selectors_parse(selectors, Myhtml::Lib::MyhtmlEncodingList::MyHTML_ENCODING_UTF_8, rule.to_unsafe, rule.bytesize, out status)
+    @list = LibMyCss.selectors_parse(@selectors, Myhtml::Lib::MyhtmlEncodingList::MyHTML_ENCODING_UTF_8, rule.to_unsafe, rule.bytesize, out status)
     if status != LibMyCss::MycssStatusT::MyCSS_STATUS_OK
       raise Myhtml::Error.new("finder selectors_parse #{status}")
     end
@@ -19,6 +19,7 @@ struct Modest::Finder
   end
 
   def finalize
+    LibModest.selectors_list_destroy(@selectors, @list, true)
     LibModest.finder_destroy(@finder, true)
   end
 end
