@@ -25,7 +25,8 @@ html = <<-HTML
     <p id=p1>
     <p id=p2 class=jo>
     <p id=p3>
-      <a>link</a>
+      <a href="some.html" id=a1>link1</a>
+      <a href="some.png" id=a2>link2</a>
     <div id=bla>
       <p id=p4 class=jo>
       <p id=p5 class=bu>
@@ -44,6 +45,9 @@ p parser.css("div > :nth-child(2n+1):not(:has(a))").map(&.attribute_by("id")).to
 
 # all elements with class=jo inside last div tag
 p parser.nodes(:div).to_a.last.css(".jo").map(&.attribute_by("id")).to_a # => ["p4", "p6"]
+
+# a element with href ends like .png
+p parser.css(%q<a[href$=".png"]>).map(&.attribute_by("id")).to_a # => ["a2"]
 
 ```
 
