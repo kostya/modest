@@ -14,8 +14,6 @@ struct Modest::Finder
 
   def find(scope_node : Myhtml::Node)
     col = LibModest.finder_by_selectors_list(@finder, @list, scope_node.raw_node, nil)
-    # TODO: save self to iterator?
-    #   or create new iterator
     Myhtml::CollectionIterator.new(@tree, col)
   end
 

@@ -2,6 +2,14 @@ struct Myhtml::Parser
   def finder(rule : String)
     Modest::Finder.new(@tree, rule)
   end
+
+  def css(rule : String)
+    finder(rule).find(root!)
+  end
+
+  def css(finder : Modest::Finder)
+    finder.find(root!)
+  end
 end
 
 struct Myhtml::Node
