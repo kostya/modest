@@ -14,8 +14,6 @@ struct Myhtml::Parser
 end
 
 struct Myhtml::Node
-  # description of selectors: http://www.w3schools.com/cssref/css_selectors.asp
-
   def css(rule : String)
     f = finder(rule)
     f.find(self)

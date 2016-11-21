@@ -9,4 +9,7 @@ dependencies:
     github: kostya/myhtml
     branch: master
 
+scripts:
+  postinstall: cd ext && make package
+
 license: MIT
