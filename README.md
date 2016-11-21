@@ -1,6 +1,6 @@
 # modest
 
-Crystal wrapper for lexborisov/Modest. CSS selectors for HTML5 Parser Myhtml.
+CSS selectors for HTML5 Parser Myhtml. Crystal wrapper for github.com/lexborisov/Modest
 
 ## Installation
 
