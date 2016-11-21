@@ -52,10 +52,11 @@ describe Modest do
   end
 
   it "work for another scope node" do
-    html = "<div><p id=p1><p id=p2><p id=p3><a>link</a><span id=bla><p id=p4 class=jo><p id=p5 class=bu><p id=p6 class=jo></span></div>"
+    html = "<div><p id=p1><p id=p2 class=jo><p id=p3><a>link</a><div id=bla><p id=p4 class=jo><p id=p5 class=bu><p id=p6 class=jo></div></div>"
 
     parser = Myhtml::Parser.new.parse(html)
-    parser.nodes(:span).first.css(".jo").to_a.map(&.attribute_by("id")).should eq %w(p4 p6)
+    parser.nodes(:div).to_a.last.css(".jo").to_a.map(&.attribute_by("id")).should eq %w(p4 p6)
+    parser.nodes(:div).to_a.first.css(".jo").to_a.map(&.attribute_by("id")).should eq %w(p2 p4 p6)
   end
 
   context "build finder" do
