@@ -19,7 +19,7 @@ class Modest::Mycss
   def free
     unless @finalized
       @finalized = true
-      LibMyCss.entry_destroy(@entry, true)
+      LibMyCss.entry_destroy(@raw_entry, true)
       LibMyCss.destroy(@raw_mycss, true)
     end
   end
