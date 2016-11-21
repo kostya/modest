@@ -44,7 +44,7 @@ p parser.css(".jo").map(&.attribute_by("id")).to_a # => ["p2", "p4", "p6"]
 p parser.css("div > :nth-child(2n+1):not(:has(a))").map(&.attribute_by("id")).to_a # => ["p1", "p4", "p6"]
 
 # all elements with class=jo inside last div tag
-p parser.nodes(:div).to_a.last.css(".jo").map(&.attribute_by("id")).to_a # => ["p4", "p6"]
+p parser.css("div").to_a.last.css(".jo").map(&.attribute_by("id")).to_a # => ["p4", "p6"]
 
 # a element with href ends like .png
 p parser.css(%q<a[href$=".png"]>).map(&.attribute_by("id")).to_a # => ["a2"]
