@@ -16,7 +16,10 @@ struct Myhtml::Node
   # description of selectors: http://www.w3schools.com/cssref/css_selectors.asp
 
   def css(rule : String)
-    finder(rule).find(self)
+    f = finder(rule)
+    f.find(self)
+  ensure
+    f.try &.free
   end
 
   def css(finder : Modest::Finder)

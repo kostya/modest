@@ -9,6 +9,7 @@ struct Modest::Finder
     if status != LibMyCss::MycssStatusT::MyCSS_STATUS_OK
       raise Myhtml::Error.new("finder selectors_parse #{status}")
     end
+    @finalized = false
   end
 
   def find(scope_node : Myhtml::Node)
@@ -16,8 +17,16 @@ struct Modest::Finder
     Myhtml::CollectionIterator.new(@tree, col)
   end
 
+  def free
+    unless @finalized
+      @finalized = true
+      LibMyCss.selectors_list_destroy(@selectors, @list, true)
+      LibModest.finder_destroy(@finder, true)
+      @css.free
+    end
+  end
+
   def finalize
-    LibModest.selectors_list_destroy(@selectors, @list, true)
-    LibModest.finder_destroy(@finder, true)
+    free
   end
 end

@@ -54,8 +54,6 @@ module Modest
     fun entry_selectors = mycss_entry_selectors(entry : MycssEntryT*) : MysccSelectorsT*
     fun destroy = mycss_destroy(mycss : MycssT*, self_destroy : Bool) : MycssT*
     fun entry_destroy = mycss_entry_destroy(entry : MycssEntryT*, self_destroy : Bool) : MycssEntryT*
-
-    # mycss_selectors_list_destroy
   end
 
   # cd src/ext && make
