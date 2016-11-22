@@ -59,7 +59,7 @@ p parser.css(%q{p[id=p3] > a[href*="html"]}).map(&.attribute_by("id")).to_a # =>
 # find all a tags inside <p id=p3>, which href contain `html` or ends_with `.png`
 p parser.css(%q{p[id=p3] > a:matches([href *= "html"], [href $= ".png"])}).map(&.attribute_by("id")).to_a # => ["a1", "a2"]
 
-# create finder and use it in many places
+# create finder and use it in many places, this is faster, than create it many times
 finder = Myhtml::Parser.finder(".jo")
 p parser.css(finder).map(&.attribute_by("id")).to_a # => ["p2", "p4", "p6"]
 ```
