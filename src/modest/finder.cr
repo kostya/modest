@@ -19,6 +19,11 @@ class Modest::Finder
     Myhtml::CollectionIterator.new(@tree, col)
   end
 
+  def find(collection : Myhtml::CollectionIterator)
+    col = LibModest.finder_by_selectors_list(@finder, @list, nil, collection.raw_collection)
+    Myhtml::CollectionIterator.new(@tree, col)
+  end
+
   def free
     unless @finalized
       @finalized = true

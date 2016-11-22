@@ -101,4 +101,15 @@ describe Modest do
     finder = parser.finder("")
     parser.css(finder).to_a.size.should eq 0
   end
+
+  context "chain css selectors" do
+    it "chain should work" do
+      html = "<div><p id=p1><p id=pp2 class=jo><p id=p3><a>link</a><span id=bla><p id=pu4 class=jo><p id=p5 class=bu><p id=pp6 class=jo></span></div>"
+
+      parser = Myhtml::Parser.new.parse(html)
+      i = parser.css("p").css(".jo")
+      nodes = i.to_a
+      nodes.map(&.attribute_by("id")).should eq %w(p2 p4 p6)
+    end
+  end
 end
