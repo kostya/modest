@@ -35,7 +35,7 @@ html = <<-PAGE
   </div>
 PAGE
 
-parser = Myhtml::Parser.new.parse(html)
+parser = Myhtml::Parser.new(html)
 
 # select all p nodes which id like `*p*`
 p parser.css("p[id*=p]").map(&.attribute_by("id")).to_a # => ["p1", "p2", "p3", "p4", "p5", "p6"]

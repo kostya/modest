@@ -5,7 +5,7 @@ describe Modest do
     html = "<div><p id=p1><p id=p2><p id=p3><a>link</a><p id=p4><p id=p5><p id=p6></div>"
     selector = "div > :nth-child(2n+1):not(:has(a))"
 
-    parser = Myhtml::Parser.new.parse(html)
+    parser = Myhtml::Parser.new(html)
     finder = Modest::Finder.new(selector)
     nodes = finder.find(parser.html!).to_a
 
@@ -23,7 +23,7 @@ describe Modest do
   it "css for root! node" do
     html = "<div><p id=p1><p id=p2 class=jo><p id=p3><a>link</a><span id=bla><p id=p4 class=jo><p id=p5 class=bu><p id=p6 class=jo></span></div>"
 
-    parser = Myhtml::Parser.new.parse(html)
+    parser = Myhtml::Parser.new(html)
     nodes = parser.root!.css("div > :nth-child(2n+1):not(:has(a))").to_a
 
     nodes.size.should eq 2
@@ -40,21 +40,21 @@ describe Modest do
   it "another rule" do
     html = "<div><p id=p1><p id=p2 class=jo><p id=p3><a>link</a><span id=bla><p id=p4 class=jo><p id=p5 class=bu><p id=p6 class=jo></span></div>"
 
-    parser = Myhtml::Parser.new.parse(html)
+    parser = Myhtml::Parser.new(html)
     parser.root!.css(".jo").to_a.map(&.attribute_by("id")).should eq %w(p2 p4 p6)
   end
 
   it "another rule for parser itself" do
     html = "<div><p id=p1><p id=p2 class=jo><p id=p3><a>link</a><span id=bla><p id=p4 class=jo><p id=p5 class=bu><p id=p6 class=jo></span></div>"
 
-    parser = Myhtml::Parser.new.parse(html)
+    parser = Myhtml::Parser.new(html)
     parser.css(".jo").to_a.map(&.attribute_by("id")).should eq %w(p2 p4 p6)
   end
 
   it "work for another scope node" do
     html = "<div><p id=p1><p id=p2 class=jo><p id=p3><a>link</a><div id=bla><p id=p4 class=jo><p id=p5 class=bu><p id=p6 class=jo></div></div>"
 
-    parser = Myhtml::Parser.new.parse(html)
+    parser = Myhtml::Parser.new(html)
     parser.nodes(:div).to_a.last.css(".jo").to_a.map(&.attribute_by("id")).should eq %w(p4 p6)
     parser.nodes(:div).to_a.first.css(".jo").to_a.map(&.attribute_by("id")).should eq %w(p2 p4 p6)
   end
@@ -63,7 +63,7 @@ describe Modest do
     it "for parser" do
       html = "<div><p id=p1><p id=p2 class=jo><p id=p3><a>link</a><span id=bla><p id=p4 class=jo><p id=p5 class=bu><p id=p6 class=jo></span></div>"
 
-      parser = Myhtml::Parser.new.parse(html)
+      parser = Myhtml::Parser.new(html)
       finder = parser.finder(".jo")
 
       10.times do
@@ -74,7 +74,7 @@ describe Modest do
     it "for parser" do
       html = "<div><p id=p1><p id=p2 class=jo><p id=p3><a>link</a><span id=bla><p id=p4 class=jo><p id=p5 class=bu><p id=p6 class=jo></span></div>"
 
-      parser = Myhtml::Parser.new.parse(html)
+      parser = Myhtml::Parser.new(html)
       finder = parser.finder(".jo")
 
       10.times do
@@ -85,7 +85,7 @@ describe Modest do
     it "for root node" do
       html = "<div><p id=p1><p id=p2 class=jo><p id=p3><a>link</a><span id=bla><p id=p4 class=jo><p id=p5 class=bu><p id=p6 class=jo></span></div>"
 
-      parser = Myhtml::Parser.new.parse(html)
+      parser = Myhtml::Parser.new(html)
       finder = parser.finder(".jo")
 
       10.times do
@@ -97,7 +97,7 @@ describe Modest do
   it "should not raise on empty selector" do
     html = "<div><p id=p1><p id=p2 class=jo><p id=p3><a>link</a><span id=bla><p id=p4 class=jo><p id=p5 class=bu><p id=p6 class=jo></span></div>"
 
-    parser = Myhtml::Parser.new.parse(html)
+    parser = Myhtml::Parser.new(html)
     finder = parser.finder("")
     parser.css(finder).to_a.size.should eq 0
   end
@@ -118,7 +118,7 @@ describe Modest do
       </div>
     PAGE
 
-    parser = Myhtml::Parser.new.parse(html)
+    parser = Myhtml::Parser.new(html)
 
     # select all p nodes which id like `*p*`
     parser.css("p[id*=p]").map(&.attribute_by("id")).to_a.should eq ["p1", "p2", "p3", "p4", "p5", "p6"]
