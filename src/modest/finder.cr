@@ -1,8 +1,8 @@
 class Modest::Finder
   @finder : LibModest::ModestFinderT*
 
-  def initialize(@tree : Myhtml::Tree, rule : String)
-    @finder = LibModest.finder_create_simple(@tree.raw_tree, nil)
+  def initialize(rule : String)
+    @finder = LibModest.finder_create_simple
     @css = Mycss.new
     @selectors = Modest::LibMyCss.entry_selectors(@css.raw_entry)
     @list = LibMyCss.selectors_parse(@selectors, Myhtml::Lib::MyhtmlEncodingList::MyHTML_ENCODING_UTF_8, rule.to_unsafe, rule.bytesize, out status)
@@ -15,8 +15,9 @@ class Modest::Finder
   end
 
   def find(scope_node : Myhtml::Node)
-    col = LibModest.finder_by_selectors_list(@finder, @list, scope_node.raw_node, nil)
-    Myhtml::CollectionIterator.new(@tree, col)
+    col = Pointer(Myhtml::Lib::MyhtmlCollectionT).new(0)
+    LibModest.finder_by_selectors_list(@finder, scope_node.raw_tree, scope_node.raw_node, @list, pointerof(col))
+    Myhtml::CollectionIterator.new(scope_node.tree, col)
   end
 
   def free

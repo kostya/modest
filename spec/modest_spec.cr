@@ -6,7 +6,7 @@ describe Modest do
     selector = "div > :nth-child(2n+1):not(:has(a))"
 
     parser = Myhtml::Parser.new.parse(html)
-    finder = Modest::Finder.new(parser.tree, selector)
+    finder = Modest::Finder.new(selector)
     nodes = finder.find(parser.html!).to_a
 
     nodes.size.should eq 2
@@ -86,7 +86,7 @@ describe Modest do
       html = "<div><p id=p1><p id=p2 class=jo><p id=p3><a>link</a><span id=bla><p id=p4 class=jo><p id=p5 class=bu><p id=p6 class=jo></span></div>"
 
       parser = Myhtml::Parser.new.parse(html)
-      finder = parser.root!.finder(".jo")
+      finder = parser.finder(".jo")
 
       10.times do
         parser.root!.css(finder).to_a.map(&.attribute_by("id")).should eq %w(p2 p4 p6)

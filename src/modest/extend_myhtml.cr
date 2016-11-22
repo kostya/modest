@@ -1,7 +1,11 @@
 # TODO: remove
 struct Myhtml::Parser
   def finder(rule : String)
-    Modest::Finder.new(@tree, rule)
+    Modest::Finder.new(rule)
+  end
+
+  def self.finder(rule : String)
+    Modest::Finder.new(rule)
   end
 
   def css(rule : String)
@@ -15,7 +19,7 @@ end
 
 struct Myhtml::Node
   def css(rule : String)
-    f = finder(rule)
+    f = Myhtml::Parser.finder(rule)
     f.find(self)
   ensure
     f.try &.free
@@ -23,9 +27,5 @@ struct Myhtml::Node
 
   def css(finder : Modest::Finder)
     finder.find(self)
-  end
-
-  def finder(rule : String)
-    Modest::Finder.new(@tree, rule)
   end
 end
