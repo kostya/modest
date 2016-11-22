@@ -10,6 +10,6 @@ dependencies:
     branch: master
 
 scripts:
-  postinstall: cd ext && make package
+  postinstall: cd src/ext && make package
 
 license: MIT
