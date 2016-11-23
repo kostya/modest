@@ -9,7 +9,10 @@ struct Myhtml::Parser
   end
 
   def css(rule : String)
-    finder(rule).find(root!)
+    f = finder(rule)
+    f.find(root!)
+  ensure
+    f.try &.free
   end
 
   def css(finder : Modest::Finder)
