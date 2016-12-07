@@ -146,4 +146,23 @@ describe Modest do
     finder = Myhtml::Parser.finder(".jo")
     parser.css(finder).map(&.attribute_by("id")).to_a.should eq ["p2", "p4", "p6"]
   end
+
+  it "integration test2" do
+    html = <<-PAGE
+      <html><body>
+      <table id="t1"><tbody>
+      <tr><td>Hello</td></tr>
+      </tbody></table>
+      <table id="t2"><tbody>
+      <tr><td>123</td><td>other</td></tr>
+      <tr><td>foo</td><td>columns</td></tr>
+      <tr><td>bar</td><td>are</td></tr>
+      <tr><td>xyz</td><td>ignored</td></tr>
+      </tbody></table>
+      </body></html>
+    PAGE
+
+    parser = Myhtml::Parser.new(html)
+    parser.css("#t2 tr td:first-child").map(&.child!.tag_text).to_a.should eq ["123", "foo", "bar", "xyz"]
+  end
 end
