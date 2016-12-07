@@ -64,6 +64,7 @@ finder = Myhtml::Parser.finder(".jo")
 p parser.css(finder).map(&.attribute_by("id")).to_a # => ["p2", "p4", "p6"]
 ```
 
+## Example2
 ```crystal
 require "modest"
 
