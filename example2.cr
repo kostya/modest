@@ -17,3 +17,4 @@ PAGE
 parser = Myhtml::Parser.new(html)
 
 p parser.css("#t2 tr td:first-child").map(&.child!.tag_text).to_a # ["123", "foo", "bar", "xyz"]
+p parser.css("#t2 tr td:first-child").map(&.deep_serialize).to_a
