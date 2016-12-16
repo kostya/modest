@@ -13,6 +13,33 @@ dependencies:
     github: kostya/modest
 ```
 
+## Benchmark
+
+Comparing with ruby-nokorigi(libxml), and crystal-crystagiri(libxml). Parse 1000 times google page, code: https://github.com/kostya/modest/tree/master/bench
+
+```crystal
+require "modest"
+page = File.read("./google.html")
+s = 0
+links = [] of String
+1000.times do
+  myhtml = Myhtml::Parser.new(page)
+  links = myhtml.css("div.g > div.rc > h3.r a").map(&.attribute_by("href")).to_a
+  s += links.size
+  myhtml.free
+end
+p links.last
+p s
+```
+
+
+| Lang     |  Package           | Time, s | Memory, MiB |
+| -------- | ------------------ | ------- | ----------- |
+| Crystal  | modest(myhtml)     | 5.65    | 25.6        |
+| Crystal  | Crystagiri(LibXML) | 21.55   | 15.0        |
+| Ruby     | Nokogiri(LibXML)   | 68.84   | 120.3       |
+
+
 
 ## Usage of CSS Selectors with https://github.com/kostya/myhtml
 
@@ -90,31 +117,4 @@ p parser.css("#t2 tr td:first-child").map(&.deep_serialize).to_a # ["<td>123</td
 
 ## CSS Selectors rules
 http://www.w3schools.com/cssref/css_selectors.asp
-
-
-## Benchmark
-
-Comparing with ruby-nokorigi(libxml), and crystal-crystagiri(libxml). Parse 1000 times google page, code: https://github.com/kostya/modest/tree/master/bench
-
-```crystal
-require "modest"
-page = File.read("./google.html")
-s = 0
-links = [] of String
-1000.times do
-  myhtml = Myhtml::Parser.new(page)
-  links = myhtml.css("div.g > div.rc > h3.r a").map(&.attribute_by("href")).to_a
-  s += links.size
-  myhtml.free
-end
-p links.last
-p s
-```
-
-
-| Lang     |  Package           | Time, s | Memory, MiB |
-| -------- | ------------------ | ------- | ----------- |
-| Crystal  | modest(myhtml)     | 5.65    | 25.6        |
-| Crystal  | Crystagiri(LibXML) | 21.55   | 15.0        |
-| Ruby     | Nokogiri(LibXML)   | 68.84   | 120.3       |
 
