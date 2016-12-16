@@ -94,7 +94,26 @@ http://www.w3schools.com/cssref/css_selectors.asp
 
 ## Benchmark
 
-Comparing with ruby-nokorigi(libxml), and crystal-crystagiri(libxml). Parse 1000 times google page, code: 
+Comparing with ruby-nokorigi(libxml), and crystal-crystagiri(libxml). Parse 1000 times google page, code: https://github.com/kostya/modest/tree/master/bench
+
+```crystal
+require "modest"
+
+page = File.read("./google.html")
+
+s = 0
+t = Time.now
+links = [] of String
+1000.times do
+  myhtml = Myhtml::Parser.new(page)
+  links = myhtml.css("div.g > div.rc > h3.r a").map(&.attribute_by("href")).to_a
+  s += links.size
+  myhtml.free
+end
+p links.last
+p s
+p Time.now - t
+```
 
 
 | Lang     |  Package           | Time, s | Memory, MiB |
