@@ -3,7 +3,6 @@ require "crystagiri"
 page = File.read("./google.html")
 
 s = 0
-t = Time.now
 links = Array(String).new(initial_capacity: 100)
 1000.times do
   links.clear
@@ -13,4 +12,3 @@ links = Array(String).new(initial_capacity: 100)
 end
 p links.last
 p s
-p Time.now - t

@@ -4,7 +4,6 @@ require "nokogiri"
 page = File.read("./google.html")
 
 s = 0
-t = Time.now
 links = []
 1000.times do
   doc = Nokogiri::HTML(page)
@@ -13,4 +12,3 @@ links = []
 end
 p links.last
 p s
-p Time.now - t

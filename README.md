@@ -98,11 +98,8 @@ Comparing with ruby-nokorigi(libxml), and crystal-crystagiri(libxml). Parse 1000
 
 ```crystal
 require "modest"
-
 page = File.read("./google.html")
-
 s = 0
-t = Time.now
 links = [] of String
 1000.times do
   myhtml = Myhtml::Parser.new(page)
@@ -112,7 +109,6 @@ links = [] of String
 end
 p links.last
 p s
-p Time.now - t
 ```
 
 
