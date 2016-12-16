@@ -1,0 +1,21 @@
+name: bench-html-parsers
+version: 0.1.0
+
+authors:
+  - Konstantin Makarchev <kostya27@gmail.com>
+
+targets:
+  bla:
+    main: src/bla.cr
+
+crystal: 0.20.1
+
+dependencies:
+  myhtml:
+    github: kostya/myhtml
+  modest:
+    github: kostya/modest
+  crystagiri:
+    github: madeindjs/crystagiri
+
+license: MIT

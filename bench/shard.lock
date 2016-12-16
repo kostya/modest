@@ -1,0 +1,14 @@
+version: 1.0
+shards:
+  crystagiri:
+    github: madeindjs/crystagiri
+    version: 0.3.2
+
+  modest:
+    github: kostya/modest
+    version: 0.2
+
+  myhtml:
+    github: kostya/myhtml
+    version: 0.10
+
