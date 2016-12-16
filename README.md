@@ -96,8 +96,10 @@ http://www.w3schools.com/cssref/css_selectors.asp
 
 Comparing with ruby-nokorigi(libxml), and crystal-crystagiri(libxml). Parse 1000 times google page, code: 
 
+
 | Lang    | Package            | Time, s | Memory, MiB |
 | ---------------------------- | ------- | ----------- |
 | Crystal | modest(myhtml)     | 5.65    | 25.6        |
 | Crystal | Crystagiri(LibXML) | 21.55   | 15.0        |
 | Ruby    | Nokogiri(LibXML)   | 68.84   | 120.3       |
+
