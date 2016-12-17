@@ -24,7 +24,7 @@ s = 0
 links = [] of String
 1000.times do
   myhtml = Myhtml::Parser.new(page)
-  links = myhtml.css("div.g > div.rc > h3.r a").map(&.attribute_by("href")).to_a
+  links = myhtml.css("div.g h3.r a").map(&.attribute_by("href")).to_a
   s += links.size
   myhtml.free
 end
@@ -35,10 +35,9 @@ p s
 
 | Lang     |  Package           | Time, s | Memory, MiB |
 | -------- | ------------------ | ------- | ----------- |
-| Crystal  | modest(myhtml)     | 5.65    | 25.6        |
-| Crystal  | Crystagiri(LibXML) | 21.55   | 15.0        |
-| Ruby     | Nokogiri(LibXML)   | 68.84   | 120.3       |
-
+| Crystal  | modest(myhtml)     | 3.91    | 17.0        |
+| Crystal  | Crystagiri(LibXML) | 27.82   | 9.0         |
+| Ruby     | Nokogiri(LibXML)   | 76.09   | 121.3       |
 
 
 ## Usage of CSS Selectors with https://github.com/kostya/myhtml

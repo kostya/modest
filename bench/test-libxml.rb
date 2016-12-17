@@ -7,7 +7,7 @@ s = 0
 links = []
 1000.times do
   doc = Nokogiri::HTML(page)
-  links = doc.css("div.g > div.rc > h3.r a").map { |link| link["href"] }
+  links = doc.css("div.g h3.r a").map { |link| link["href"] }
   s += links.size
 end
 p links.last
