@@ -115,5 +115,4 @@ p parser.css("#t2 tr td:first-child").map(&.deep_serialize).to_a # ["<td>123</td
 ```
 
 ## CSS Selectors rules
-http://www.w3schools.com/cssref/css_selectors.asp
-
+https://drafts.csswg.org/selectors-4/
