@@ -13,33 +13,6 @@ dependencies:
     github: kostya/modest
 ```
 
-## Benchmark
-
-Comparing with ruby-nokorigi(libxml), and crystal-crystagiri(libxml). Parse 1000 times google page, code: https://github.com/kostya/modest/tree/master/bench
-
-```crystal
-require "modest"
-page = File.read("./google.html")
-s = 0
-links = [] of String
-1000.times do
-  myhtml = Myhtml::Parser.new(page)
-  links = myhtml.css("div.g h3.r a").map(&.attribute_by("href")).to_a
-  s += links.size
-  myhtml.free
-end
-p links.last
-p s
-```
-
-
-| Lang     |  Package           | Time, s | Memory, MiB |
-| -------- | ------------------ | ------- | ----------- |
-| Crystal  | modest(myhtml)     | 2.62    | 9.8         |
-| Crystal  | Crystagiri(LibXML) | 19.89   | 11.5        |
-| Ruby 2.2 | Nokogiri(LibXML)   | 45.82   | 136.2       |
-
-
 ## Usage of CSS Selectors with https://github.com/kostya/myhtml
 
 
@@ -113,6 +86,42 @@ parser = Myhtml::Parser.new(html)
 p parser.css("#t2 tr td:first-child").map(&.child!.tag_text).to_a # ["123", "foo", "bar", "xyz"]
 p parser.css("#t2 tr td:first-child").map(&.deep_serialize).to_a # ["<td>123</td>", "<td>foo</td>", "<td>bar</td>", "<td>xyz</td>"]
 ```
+
+## Benchmark
+
+Comparing with nokorigi(libxml), and crystagiri(libxml). Parse 1000 times google page, code: https://github.com/kostya/modest/tree/master/bench
+
+```crystal
+require "modest"
+page = File.read("./google.html")
+s = 0
+links = [] of String
+1000.times do
+  myhtml = Myhtml::Parser.new(page)
+  links = myhtml.css("div.g h3.r a").map(&.attribute_by("href")).to_a
+  s += links.size
+  myhtml.free
+end
+p links.last
+p s
+```
+
+Parsers
+
+| Lang     |  Package           | Time, s | Memory, MiB |
+| -------- | ------------------ | ------- | ----------- |
+| Crystal  | modest(myhtml)     | 2.62    | 9.8         |
+| Crystal  | Crystagiri(LibXML) | 19.89   | 11.5        |
+| Ruby 2.2 | Nokogiri(LibXML)   | 45.82   | 136.2       |
+
+Selectors Only (files with 2 suffix)
+
+| Lang     |  Package           | Time, s | Memory, MiB |
+| -------- | ------------------ | ------- | ----------- |
+| Crystal  | modest(myhtml)     | 0.47    | 8.1         |
+| Crystal  | Crystagiri(LibXML) | 20.91   | 5.7         |
+| Ruby 2.2 | Nokogiri(LibXML)   | 57.99   | 61.7        |
+
 
 ## CSS Selectors rules
 https://drafts.csswg.org/selectors-4/
