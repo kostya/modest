@@ -3,3 +3,5 @@ bundle
 crystal deps
 crystal build test-libxml.cr --release -o bin_test_libxml
 crystal build test-myhtml.cr --release -o bin_test_myhtml
+crystal build test-libxml2.cr --release -o bin_test_libxml2
+crystal build test-myhtml2.cr --release -o bin_test_myhtml2
