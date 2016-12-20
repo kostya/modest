@@ -35,9 +35,9 @@ p s
 
 | Lang     |  Package           | Time, s | Memory, MiB |
 | -------- | ------------------ | ------- | ----------- |
-| Crystal  | modest(myhtml)     | 3.91    | 17.0        |
-| Crystal  | Crystagiri(LibXML) | 27.82   | 9.0         |
-| Ruby     | Nokogiri(LibXML)   | 76.09   | 121.3       |
+| Crystal  | modest(myhtml)     | 2.62    | 9.8         |
+| Crystal  | Crystagiri(LibXML) | 19.89   | 11.5        |
+| Ruby 2.2 | Nokogiri(LibXML)   | 45.82   | 136.2       |
 
 
 ## Usage of CSS Selectors with https://github.com/kostya/myhtml
