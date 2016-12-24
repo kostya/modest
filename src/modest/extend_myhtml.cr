@@ -1,4 +1,6 @@
-# TODO: remove
+require "myhtml"
+
+# TODO: remove?
 struct Myhtml::Parser
   def finder(rule : String)
     Modest::Finder.new(rule)

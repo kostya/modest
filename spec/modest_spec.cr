@@ -163,6 +163,13 @@ describe Modest do
     PAGE
 
     parser = Myhtml::Parser.new(html)
-    parser.css("#t2 tr td:first-child").map(&.child!.tag_text).to_a.should eq ["123", "foo", "bar", "xyz"]
+    parser.css("#t2 tr td:first-child").map(&.inner_text).to_a.should eq ["123", "foo", "bar", "xyz"]
+    parser.css("#t2 tr td:first-child").map(&.to_html).to_a.should eq ["<td>123</td>", "<td>foo</td>", "<td>bar</td>", "<td>xyz</td>"]
+
+    res = [] of String
+    parser.css("#t2 tr").each do |node|
+      res << node.css("td:first-child").first.inner_text
+    end
+    res.join('|').should eq "123|foo|bar|xyz"
   end
 end
