@@ -183,6 +183,7 @@ describe Modest do
       x += 1
       c += 1 if node.attribute_by("class") == "A"
     end
+    x.should eq 20000
     c.should eq 20000
   end
 end
