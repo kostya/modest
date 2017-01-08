@@ -172,4 +172,17 @@ describe Modest do
     end
     res.join('|').should eq "123|foo|bar|xyz"
   end
+
+  it "not sigfaulting on more than 1024 elements" do
+    str = "<html>" + "<div class=A>ooo</div>" * 20000 + "</html>"
+    parser = Myhtml::Parser.new(str)
+
+    c = 0
+    x = 0
+    parser.css("div").each do |node|
+      x += 1
+      c += 1 if node.attribute_by("class") == "A"
+    end
+    c.should eq 20000
+  end
 end
