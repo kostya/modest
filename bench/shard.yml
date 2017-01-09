@@ -13,8 +13,10 @@ crystal: 0.20.1
 dependencies:
   myhtml:
     github: kostya/myhtml
+    branch: master
   modest:
     github: kostya/modest
+    branch: master
   crystagiri:
     github: madeindjs/crystagiri
 
