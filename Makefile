@@ -2,17 +2,20 @@ CRYSTAL ?= crystal
 CRYSTALFLAGS ?= --release
 
 .PHONY: all package spec
-all: bin_example bin_example2
+all: bin_example1 bin_example2 bin_example3
 package: src/ext/modest-c/lib/libmodest_static.a
 
 libs:
 		crystal deps
 
-bin_example: src/*.cr src/**/*.cr example.cr package
-		$(CRYSTAL) build example.cr $(CRYSTALFLAGS) -o $@
+bin_example1: src/*.cr src/**/*.cr examples/example1.cr package
+		$(CRYSTAL) build examples/example1.cr $(CRYSTALFLAGS) -o $@
 
-bin_example2: src/*.cr src/**/*.cr example2.cr package
-		$(CRYSTAL) build example2.cr $(CRYSTALFLAGS) -o $@
+bin_example2: src/*.cr src/**/*.cr examples/example2.cr package
+		$(CRYSTAL) build examples/example2.cr $(CRYSTALFLAGS) -o $@
+
+bin_example3: src/*.cr src/**/*.cr examples/example3.cr package
+		$(CRYSTAL) build examples/example3.cr $(CRYSTALFLAGS) -o $@
 
 src/ext/modest-c/lib/libmodest_static.a:
 		cd src/ext && make package

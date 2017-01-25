@@ -1,4 +1,4 @@
-require "./src/modest"
+require "../src/modest"
 
 html = <<-PAGE
   <div>
@@ -22,7 +22,7 @@ p parser.css("p[id*=p]").map(&.attribute_by("id")).to_a # => ["p1", "p2", "p3", 
 
 # select all nodes with class "jo"
 p parser.css("p.jo").map(&.attribute_by("id")).to_a # => ["p2", "p4", "p6"]
-p parser.css(".jo").map(&.attribute_by("id")).to_a # => ["p2", "p4", "p6"]
+p parser.css(".jo").map(&.attribute_by("id")).to_a  # => ["p2", "p4", "p6"]
 
 # select odd child tag inside div, which not contain a
 p parser.css("div > :nth-child(2n+1):not(:has(a))").map(&.attribute_by("id")).to_a # => ["p1", "p4", "p6"]

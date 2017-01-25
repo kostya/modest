@@ -15,6 +15,31 @@ dependencies:
 
 ## Usage of CSS Selectors with https://github.com/kostya/myhtml
 
+```crystal
+require "modest"
+
+page = <<-PAGE
+  <html>
+    <div class=aaa><p id=bbb><a href="http://..." class=ccc>bla</a></p></div>
+  </html>
+PAGE
+
+myhtml = Myhtml::Parser.new("<html>...</html>")
+
+# css select from the root! scope
+iterator = myhtml.css("div.aaa p#bbb a.ccc") # => Iterator(Myhtml::Node), methods: .each, .to_a, ...
+
+iterator.each do |node|
+  p node.tag_id
+  p node.tag_name # "a"
+  p node.tag_sym # :a
+  p node.attributes["href"]? # => "http://..."
+  p node.inner_text # "bla"
+  p node.to_html # 
+end
+```
+
+## Example 2
 
 ```crystal
 require "modest"
@@ -63,7 +88,7 @@ finder = Myhtml::Parser.finder(".jo")
 p parser.css(finder).map(&.attribute_by("id")).to_a # => ["p2", "p4", "p6"]
 ```
 
-## Example2
+## Example 3
 ```crystal
 require "modest"
 
@@ -85,11 +110,6 @@ parser = Myhtml::Parser.new(html)
 
 p parser.css("#t2 tr td:first-child").map(&.inner_text).to_a # => ["123", "foo", "bar", "xyz"]
 p parser.css("#t2 tr td:first-child").map(&.to_html).to_a # => ["<td>123</td>", "<td>foo</td>", "<td>bar</td>", "<td>xyz</td>"]
-
-# sub cssing
-parser.css("#t2 tr").each do |node|
-  p node.css("td:first-child").first.inner_text
-end
 ```
 
 ## Benchmark
