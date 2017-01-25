@@ -33,7 +33,7 @@ iterator.each do |node|
   p node.tag_id              # MyHTML_TAG_A
   p node.tag_name            # "a"
   p node.tag_sym             # :a
-  p node.attributes["href"]? # => "http://..."
+  p node.attributes["href"]? # "http://..."
   p node.inner_text          # "bla"
   puts node.to_html          # <a href="http://..." class="ccc">bla</a>
 end
