@@ -8,7 +8,7 @@ PAGE
 
 myhtml = Myhtml::Parser.new(page)
 
-# css select from the root! scope
+# css select from the root! scope (equal with myhtml.root!.css("..."))
 iterator = myhtml.css("div.aaa p#bbb a.ccc") # => Iterator(Myhtml::Node), methods: .each, .to_a, ...
 
 iterator.each do |node|
