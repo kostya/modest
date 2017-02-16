@@ -2,7 +2,7 @@
 package: ./modest-c/lib/libmodest_static.a
 
 ./modest-c:
-	git clone --depth 1 https://github.com/lexborisov/Modest.git ./modest-c
+	git clone https://github.com/lexborisov/Modest.git ./modest-c
 	cd modest-c && git reset --hard 017d81936f55ff677e5ba76372bd57789fddd351
 
 ./modest-c/lib/libmodest_static.a: ./modest-c
