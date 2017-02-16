@@ -3,7 +3,7 @@ package: ./modest-c/lib/libmodest_static.a
 
 ./modest-c:
 	git clone --depth 1 https://github.com/lexborisov/Modest.git ./modest-c
-	# cd modest-c && git reset --hard 11bcf850bc48afd21a9601ec4818de4adc060963
+	cd modest-c && git reset --hard 017d81936f55ff677e5ba76372bd57789fddd351
 
 ./modest-c/lib/libmodest_static.a: ./modest-c
 	cd modest-c && make create shared static MODEST_BUILD_SHARED=OFF MODESTS_BUILD_WITHOUT_THREADS=YES MODEST_OPTIMIZATION_LEVEL=-O3
