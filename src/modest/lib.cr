@@ -71,7 +71,6 @@ module Modest
     fun finder_destroy = modest_finder_destroy(finder : ModestFinderT*, self_destroy : Bool) : ModestFinderT*
 
     fun finder_by_selectors_list = modest_finder_by_selectors_list(finder : ModestFinderT*,
-                                                                   myhtml_tree : Myhtml::Lib::MyhtmlTreeT*,
                                                                    scope_node : Myhtml::Lib::MyhtmlTreeNodeT*,
                                                                    sel_list : LibMyCss::MysccSelectorsListT*,
                                                                    collection : Myhtml::Lib::MyhtmlCollectionT**) : ModestStatusT
