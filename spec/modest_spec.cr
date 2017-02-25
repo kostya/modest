@@ -64,7 +64,7 @@ describe Modest do
       html = "<div><p id=p1><p id=p2 class=jo><p id=p3><a>link</a><span id=bla><p id=p4 class=jo><p id=p5 class=bu><p id=p6 class=jo></span></div>"
 
       parser = Myhtml::Parser.new(html)
-      finder = parser.finder(".jo")
+      finder = Modest::Finder.new(".jo")
 
       10.times do
         parser.root!.css(finder).to_a.map(&.attribute_by("id")).should eq %w(p2 p4 p6)
@@ -75,7 +75,7 @@ describe Modest do
       html = "<div><p id=p1><p id=p2 class=jo><p id=p3><a>link</a><span id=bla><p id=p4 class=jo><p id=p5 class=bu><p id=p6 class=jo></span></div>"
 
       parser = Myhtml::Parser.new(html)
-      finder = parser.finder(".jo")
+      finder = Modest::Finder.new(".jo")
 
       10.times do
         parser.css(finder).to_a.map(&.attribute_by("id")).should eq %w(p2 p4 p6)
@@ -86,7 +86,7 @@ describe Modest do
       html = "<div><p id=p1><p id=p2 class=jo><p id=p3><a>link</a><span id=bla><p id=p4 class=jo><p id=p5 class=bu><p id=p6 class=jo></span></div>"
 
       parser = Myhtml::Parser.new(html)
-      finder = parser.finder(".jo")
+      finder = Modest::Finder.new(".jo")
 
       10.times do
         parser.root!.css(finder).to_a.map(&.attribute_by("id")).should eq %w(p2 p4 p6)
@@ -98,7 +98,7 @@ describe Modest do
     html = "<div><p id=p1><p id=p2 class=jo><p id=p3><a>link</a><span id=bla><p id=p4 class=jo><p id=p5 class=bu><p id=p6 class=jo></span></div>"
 
     parser = Myhtml::Parser.new(html)
-    finder = parser.finder("")
+    finder = Modest::Finder.new("")
     parser.css(finder).to_a.size.should eq 0
   end
 
@@ -143,7 +143,7 @@ describe Modest do
     parser.css(%q{p[id=p3] > a:matches([href *= "html"], [href $= ".png"])}).map(&.attribute_by("id")).to_a.should eq ["a1", "a2"]
 
     # create finder and use it in many places
-    finder = Myhtml::Parser.finder(".jo")
+    finder = Modest::Finder.new(".jo")
     parser.css(finder).map(&.attribute_by("id")).to_a.should eq ["p2", "p4", "p6"]
   end
 
