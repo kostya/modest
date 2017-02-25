@@ -12,7 +12,7 @@ struct Myhtml::Parser
 
   def css(rule : String)
     f = finder(rule)
-    f.find(root!)
+    css(f)
   ensure
     f.try &.free
   end
@@ -25,7 +25,7 @@ end
 struct Myhtml::Node
   def css(rule : String)
     f = Myhtml::Parser.finder(rule)
-    f.find(self)
+    css(f)
   ensure
     f.try &.free
   end
