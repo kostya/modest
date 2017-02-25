@@ -8,15 +8,15 @@ targets:
   bla:
     main: src/bla.cr
 
-crystal: 0.20.1
+crystal: 0.21
 
 dependencies:
   myhtml:
     github: kostya/myhtml
-    branch: master
+    version: 0.18
   modest:
     github: kostya/modest
-    branch: master
+    version: 0.5
   crystagiri:
     github: madeindjs/crystagiri
 

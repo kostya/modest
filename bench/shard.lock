@@ -6,9 +6,9 @@ shards:
 
   modest:
     github: kostya/modest
-    commit: d8c629f795cc99a3556943e56e855ef71f347944
+    version: 0.5
 
   myhtml:
     github: kostya/myhtml
-    commit: f33b2e87e625869431cca40a7fd49da1bef59afa
+    version: 0.17
 
