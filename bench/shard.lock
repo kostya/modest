@@ -6,9 +6,9 @@ shards:
 
   modest:
     github: kostya/modest
-    version: 0.5
+    version: 0.6
 
   myhtml:
     github: kostya/myhtml
-    version: 0.17
+    version: 0.18
 

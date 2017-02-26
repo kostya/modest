@@ -13,10 +13,9 @@ crystal: 0.21
 dependencies:
   myhtml:
     github: kostya/myhtml
-    version: 0.18
   modest:
     github: kostya/modest
-    version: 0.5
+    version: 0.6
   crystagiri:
     github: madeindjs/crystagiri
 
