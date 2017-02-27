@@ -14,7 +14,7 @@ package: ./modest-c/lib/libmodest_static.a
 
 
 ./modest-c/lib/libmodest_static.a: ./modest-c
-	cd modest-c && make create shared static MODEST_BUILD_SHARED=OFF MODESTS_BUILD_WITHOUT_THREADS=YES MODEST_OPTIMIZATION_LEVEL=-O3
+	cd modest-c && make create shared static MODEST_BUILD_SHARED=OFF MODESTS_BUILD_WITHOUT_THREADS=YES # MODEST_OPTIMIZATION_LEVEL=-O3
 
 .PHONY: clean
 clean:
