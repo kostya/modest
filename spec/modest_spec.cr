@@ -69,6 +69,8 @@ describe Modest do
       10.times do
         parser.root!.css(finder).to_a.map(&.attribute_by("id")).should eq %w(p2 p4 p6)
       end
+
+      finder.inspect.should eq "Modest::Finder(rule: `.jo`)"
     end
 
     it "for parser" do

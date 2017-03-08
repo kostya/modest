@@ -1,7 +1,7 @@
 class Modest::Finder
   @finder : LibModest::ModestFinderT*
 
-  def initialize(rule : String)
+  def initialize(@rule : String)
     @finder = LibModest.finder_create_simple
     @css = Mycss.new
     @selectors = Modest::LibMyCss.entry_selectors(@css.raw_entry)
@@ -31,5 +31,11 @@ class Modest::Finder
 
   def finalize
     free
+  end
+
+  def inspect(io)
+    io << "Modest::Finder(rule: `"
+    io << @rule
+    io << "`)"
   end
 end
