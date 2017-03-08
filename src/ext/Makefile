@@ -1,4 +1,4 @@
-FILENAME := c0ca7ee5619db879c8cb29ab7a1ec64528d2d4bf.tar.gz
+FILENAME := b00f9e4a890e928c61d2357dceb58bc54612d236.tar.gz
 
 .PHONY: package
 package: ./modest-c/lib/libmodest_static.a

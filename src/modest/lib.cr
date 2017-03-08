@@ -75,4 +75,45 @@ module Modest
                                                                    sel_list : LibMyCss::MysccSelectorsListT*,
                                                                    collection : Myhtml::Lib::MyhtmlCollectionT**) : ModestStatusT
   end
+
+
+  # cd src/ext && make
+  @[Link(ldflags: "#{__DIR__}/../ext/modest-c/lib/libmodest_static.a")]
+  lib LibUrl
+    type MyUrlT = Void*
+    type MyUrlEntryT = Void*
+
+    enum MyUrlStatusT
+      Bla = 1
+    end
+
+    fun create = myurl_create : MyUrlT*
+    fun init = myurl_init(url : MyUrlT*) : MyUrlStatusT
+    fun parse = myurl_parse(url : MyUrlT*, data_url : UInt8*, data_url_size : LibC::SizeT, base_url : MyUrlEntryT*, status : MyUrlStatusT*) : MyUrlEntryT*
+
+    fun entry_free_string = myurl_entry_free_string(url_entry : MyUrlEntryT*, string : UInt8*)
+    fun entry_destroy = myurl_entry_destroy(url_entry : MyUrlEntryT*, self_destroy : Bool) : MyUrlEntryT*
+    fun destroy = myurl_destroy(url : MyUrlT*, self_destroy : Bool) : MyUrlT*
+  end
 end
+
+    # const char *scheme   = myurl_entry_scheme_name(url_base, NULL);
+    # char *authority      = myurl_entry_authority_as_string(url_base, NULL);
+    # const char *username = myurl_entry_username(url_base, NULL);
+    # const char *password = myurl_entry_password(url_base, NULL);
+    # char *host           = myurl_entry_host_as_string(url_base, NULL);
+    # char *path           = myurl_entry_path_as_string(url_base, NULL);
+    # const char *query    = myurl_entry_query(url_base, NULL);
+    # const char *fragment = myurl_entry_fragment(url_base, NULL);
+    
+    # printf("\tScheme: %s\n"         , (scheme ? scheme : ""));
+    # printf("\tScheme port: %u\n"    , myurl_entry_scheme_port(url_base));
+    # printf("\tAuthority (%s):\n"    , authority);
+    # printf("\t\tUsername: %s\n"     , username);
+    # printf("\t\tPassword: %s\n"     , password);
+    # printf("\tHost: %s\n"           , host);
+    # printf("\tPort is defined: %s\n", (myurl_entry_port_is_defined(url_base) ? "true" : "false"));
+    # printf("\tPort: %u\n"           , myurl_entry_port(url_base));
+    # printf("\tPath: %s\n"           , path);
+    # printf("\tQuery: %s\n"          , (query ? query : ""));
+    # printf("\tFragment: %s\n"       , (fragment ? fragment : ""));
