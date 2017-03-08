@@ -188,4 +188,9 @@ describe Modest do
     x.should eq 20000
     c.should eq 20000
   end
+
+  it "bug in css" do
+    parser = Myhtml::Parser.new(%q{<div class="asfjjjj">bla</div>})
+    parser.css("div.jjjj").to_a.size.should eq 0
+  end
 end
