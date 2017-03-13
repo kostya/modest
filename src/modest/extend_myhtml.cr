@@ -15,4 +15,11 @@ struct Myhtml::Node
   def css(finder : Modest::Finder)
     finder.find(self)
   end
+
+  def css(arg)
+    collection = css(arg)
+    yield collection
+  ensure
+    collection.try &.free
+  end
 end

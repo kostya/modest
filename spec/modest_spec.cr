@@ -193,4 +193,9 @@ describe Modest do
     parser = Myhtml::Parser.new(%q{<div class="asfjjjj">bla</div>})
     parser.css("div.jjjj").to_a.size.should eq 0
   end
+
+  it "css with yield" do
+    parser = Myhtml::Parser.new(%q{<div class="jjjj">bla</div>})
+    parser.css("div.jjjj") { |col| col.to_a.size }.should eq 1
+  end
 end
