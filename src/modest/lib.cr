@@ -46,7 +46,7 @@ module Modest
     fun init = mycss_init(mycss : MycssT*) : MycssStatusT
     fun entry_create = mycss_entry_create : MycssEntryT*
     fun entry_init = mycss_entry_init(mycss : MycssT*, entry : MycssEntryT*) : MycssStatusT
-    fun selectors_parse = mycss_selectors_parse(selectors : MysccSelectorsT*, encoding : Myhtml::Lib::MyhtmlEncodingList,
+    fun selectors_parse = mycss_selectors_parse(selectors : MysccSelectorsT*, encoding : Myhtml::Lib::MyEncodingList,
                                                 data : UInt8*, data_size : LibC::SizeT, out_status : MycssStatusT*) : MysccSelectorsListT*
     fun selectors_list_destroy = mycss_selectors_list_destroy(selectors : MysccSelectorsT*, selector_list : MysccSelectorsListT*, self_destroy : Bool) : MysccSelectorsListT*
 

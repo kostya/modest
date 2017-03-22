@@ -26,3 +26,4 @@ spec:
 .PHONY: clean
 clean:
 		rm -f bin_* src/ext/modest-c/lib/libmodest_static.a
+		rm -rf src/ext/modest-c

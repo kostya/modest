@@ -5,7 +5,7 @@ class Modest::Finder
     @finder = LibModest.finder_create_simple
     @css = Mycss.new
     @selectors = Modest::LibMyCss.entry_selectors(@css.raw_entry)
-    @list = LibMyCss.selectors_parse(@selectors, Myhtml::Lib::MyhtmlEncodingList::MyHTML_ENCODING_UTF_8, rule.to_unsafe, rule.bytesize, out status)
+    @list = LibMyCss.selectors_parse(@selectors, Myhtml::Lib::MyEncodingList::MyENCODING_UTF_8, rule.to_unsafe, rule.bytesize, out status)
     if status != LibMyCss::MycssStatusT::MyCSS_STATUS_OK
       LibMyCss.selectors_list_destroy(@selectors, @list, true)
       LibModest.finder_destroy(@finder, true)

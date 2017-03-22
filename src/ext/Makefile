@@ -1,4 +1,4 @@
-FILENAME := d4561d9ad19d348a7c9ea448e3e7be986ab353d1.tar.gz
+FILENAME := d5cac76ff56c3591c8613db1b8d4207fa1f0b3cb.tar.gz
 
 .PHONY: package
 package: ./modest-c/lib/libmodest_static.a
@@ -14,7 +14,7 @@ package: ./modest-c/lib/libmodest_static.a
 
 
 ./modest-c/lib/libmodest_static.a: ./modest-c
-	cd modest-c && make create shared static MODEST_BUILD_SHARED=OFF MODESTS_BUILD_WITHOUT_THREADS=YES # MODEST_OPTIMIZATION_LEVEL=-O3
+	cd modest-c && make static MyHTML_BUILD_SHARED=OFF MyCORE_BUILD_WITHOUT_THREADS=YES PROJECT_OPTIMIZATION_LEVEL=-O3
 
 .PHONY: clean
 clean:
