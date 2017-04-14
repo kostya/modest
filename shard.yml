@@ -7,7 +7,7 @@ authors:
 dependencies:
   myhtml:
     github: kostya/myhtml
-    version: ">= 0.24"
+    version: ">= 0.25"
 
 scripts:
   postinstall: cd src/ext && make package
