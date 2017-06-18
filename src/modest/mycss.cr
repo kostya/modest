@@ -2,6 +2,7 @@ class Modest::Mycss
   getter raw_mycss, raw_entry
 
   def initialize
+    @finalized = false
     @raw_mycss = LibMyCss.create
     status = LibMyCss.init(@raw_mycss)
     if status != LibMyCss::MycssStatusT::MyCSS_STATUS_OK
@@ -11,11 +12,9 @@ class Modest::Mycss
     @raw_entry = LibMyCss.entry_create
     status = LibMyCss.entry_init(@raw_mycss, @raw_entry)
     if status != LibMyCss::MycssStatusT::MyCSS_STATUS_OK
-      LibMyCss.entry_destroy(@raw_entry, true)
-      LibMyCss.destroy(@raw_mycss, true)
+      free
       raise Myhtml::Error.new("mycss entry_init error #{status}")
     end
-    @finalized = false
   end
 
   def free
