@@ -15,7 +15,6 @@ dependencies:
     github: kostya/myhtml
   modest:
     github: kostya/modest
-    version: 0.6
   crystagiri:
     github: madeindjs/crystagiri
 
