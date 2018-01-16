@@ -1,4 +1,4 @@
-REV := 7e2ed5fb1a2401746a9d9cb8305af35f21fb1dc6
+REV := a190b8f493ea2b045c9874922eefa7070d826341
 
 .PHONY: package
 package: ./modest-c/lib/libmodest_static.a

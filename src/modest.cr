@@ -2,5 +2,5 @@ require "myhtml"
 require "./modest/*"
 
 module Modest
-  VERSION = "0.13"
+  VERSION = "0.14"
 end
