@@ -1,6 +1,6 @@
 # modest
 
-CSS selectors for HTML5 Parser myhtml (Crystal wrapper for https://github.com/lexborisov/Modest).
+CSS selectors for HTML5 Parser [myhtml](https://github.com/kostya/myhtml) (Crystal wrapper for https://github.com/lexborisov/Modest).
 
 ## Installation
 
@@ -13,7 +13,7 @@ dependencies:
     github: kostya/modest
 ```
 
-## Usage of CSS Selectors with https://github.com/kostya/myhtml
+## Usage of CSS Selectors with myhtml parser
 
 ```crystal
 require "modest"
