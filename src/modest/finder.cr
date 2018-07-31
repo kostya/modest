@@ -15,7 +15,7 @@ class Modest::Finder
 
   def find(scope_node : Myhtml::Node)
     col = Pointer(Myhtml::Lib::MyhtmlCollectionT).new(0)
-    LibModest.finder_by_selectors_list(@finder, scope_node.raw_node, @list, pointerof(col))
+    LibModest.finder_by_selectors_list(@finder, scope_node.node, @list, pointerof(col))
     Myhtml::Iterator.new(scope_node.tree, col)
   end
 
