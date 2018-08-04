@@ -1,3 +1,5 @@
+## WARNING, this shard obsolete and moved to [myhtml](https://github.com/kostya/myhtml) directly, use [myhtml](https://github.com/kostya/myhtml) >= 1.0.0
+
 # modest
 
 CSS selectors for HTML5 Parser [myhtml](https://github.com/kostya/myhtml) (Crystal wrapper for https://github.com/lexborisov/Modest).

@@ -1,5 +1,5 @@
 name: modest
-version: 0.17
+version: 0.18
 
 authors:
   - Konstantin Makarchev <kostya27@gmail.com>
@@ -7,7 +7,7 @@ authors:
 dependencies:
   myhtml:
     github: kostya/myhtml
-    version: ">= 0.30"
+    version: "< 1.0"
 
 scripts:
   postinstall: cd src/ext && make package
